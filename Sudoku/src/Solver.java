@@ -15,7 +15,7 @@ public class Solver {
 				{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 				{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 				{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-				{ 1, 1, 0, 0, 0, 0, 0, 0, 0 },
+				{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 		};
 	
 	public Solver(int[][] board) {
@@ -28,6 +28,7 @@ public class Solver {
 		}
 	}
 	
+	//Check the 3x3 box that the number is in for duplicates
 	private boolean checkBox(int row, int col, int number) {
 		int boxRow = row - (row % 3);
 		int boxCol = col - (col % 3);
@@ -42,6 +43,7 @@ public class Solver {
 	return true;
   }
 	
+	//Check the column of the number for duplicates
 	private boolean checkCol(int col, int number) {
 		for (int i = 0; i < BOARD_SIZE; i++) {
 			if (board[i][col] == number) {
@@ -51,6 +53,7 @@ public class Solver {
 	  return true;
 	}
 	
+	//Check the row of the number for duplicates
 	private boolean checkRow(int row, int number) {
 		for (int i = 0; i < BOARD_SIZE; i++) {
 			if (board[row][i] == number) {
@@ -60,6 +63,7 @@ public class Solver {
 	  return true;
 	}
 	
+	//Check all 3 conditions to see if number is valid choice
 	private boolean isValid(int row, int col, int number) {
 		if(checkBox(row, col, number) && checkCol(col, number) && checkRow(row, number)) {
 			return true;
@@ -67,6 +71,7 @@ public class Solver {
 	  return false;
 	}
 	
+	//Solve the board using backtracking
 	public boolean solver() {
 		for (int row = 0; row < BOARD_SIZE; row++) {
 			for (int col = 0; col < BOARD_SIZE; col++) {
@@ -90,6 +95,7 @@ public class Solver {
 	  return true;
 	}
 	
+	//Print out the board
 	public void print() {
 		for (int i = 0; i < BOARD_SIZE; i++) {
 			for (int j = 0; j < BOARD_SIZE; j++) {
@@ -103,6 +109,7 @@ public class Solver {
 		}
 	}
 	
+	//Solve the board and display output message
 	public static void main(String[] args) {
 		Solver newboard = new Solver(BOARD);
 		newboard.print();
